@@ -12,7 +12,9 @@ typedef struct {
 } area;
 
 //variaveis
-area campoMinado [TAM][TAM];
+area campoMinado [TAM][TAM] = {0};
+int opcao;
+char parar = 0, venceu;
 int TAM = 0;
 int linha, coluna;
 
@@ -78,7 +80,57 @@ int main(){
 
     inicioCampominado();
     sortearBombas(int BOMB);
-    contarBombas();    
+    contarBombas();
+
+    do{
+        printf("========== CAMPO MINADO ==========\n\n");
+
+        printf("1 -> 5 x 5 : 1 Bomba\n");
+        printf("2 -> 10 x 10 : 3 Bombas\n");
+        printf("3 -> 15 x 15 : 5 Bombas\n");
+        printf("4 -> 20 x 20 : 7 Bombas\n");
+        printf("5 -> 25 x 25 : 9 Bombas\n");
+        printf("0 - Sair\n\n");
+
+        printf("Escolha a dificuldade entre 1 e 5 ou digite 0 para sair\n");
+        scanf("%d", opcao);
+
+        while();
+
+        switch (opcao)
+        {
+        case 1:
+            TAM = 5;
+            sortearBombas(int BOMB = 1);
+            break;
         
+        case 2:
+            TAM = 10;
+            sortearBombas(int BOMB = 3);
+            break;
+        
+        case 3:
+            TAM = 15;
+            sortearBombas(int BOMB = 5);
+            break;
+        
+        case 4:
+            TAM = 20;
+            sortearBombas(int BOMB = 7);
+            break;
+
+        case 5:
+            TAM = 25;
+            sortearBombas(int BOMB = 9);
+            break;
+
+        case 0:
+            continue;
+
+        default:
+            continue;
+        }
+    }
+
     return 0;
 }

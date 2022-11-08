@@ -226,7 +226,7 @@ int main()
         if(venceu)
             printf("\n ### PARABENS voce VENCEU ### \n");
         else
-            printf("\n !!! BOOM voce encontrou um BOMBA!!! \n");
+            printf("\n !!! BOOOM voce encontrou uma BOMBA!!! \n");
         while ((ch = getchar()) != '\n' && ch != EOF);
 
     }while(op != 0);

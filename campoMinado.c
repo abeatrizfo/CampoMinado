@@ -3,8 +3,6 @@
 #include <time.h>
 #include <ctype.h>
 
-//Projeto Campo Minado: ANA BEATRIZ, LAURA e MARLUS
-
 //Tamanho Máximo do Campo Minado
 #define TAM 25
 
@@ -89,8 +87,8 @@ void imprimircampo(casa campominado[TAM][TAM]){
     for (i = 0; i<linha; i++){
         printf("  %2d  |  ", i+1);
         for (j = 0; j<coluna; j++){
-            if(campominado[i][j].estado == 0) printf(" %c", 254); //casas ainda não reveladas
-            else if(campominado[i][j].valor < 0) printf(" %c", 15); //bombas
+            if(campominado[i][j].estado == 0) printf(" %c", 'x'); //casas ainda não reveladas
+            else if(campominado[i][j].valor < 0) printf(" %c", '*'); //bombas
             else if(campominado[i][j].valor) printf(" %hhd", campominado[i][j].valor); //numero de bombas na vizinhaça
             else printf(" ."); //casa sem bombas ao redor
         }
@@ -128,10 +126,10 @@ int main()
         printf("\n ~~~~~~~~~~ CAMPO MINADO ~~~~~~~~~~\n\n");
 
         printf(" 1 - Muito facil   ->  5 x  5 : 1 bomba\n");
-        printf(" 2 - Facil  -> 10 x 10 : 5 bombas\n");
-        printf(" 3 - Medio -> 15 x 15 : 7 bombas\n");
-        printf(" 4 - Dificil -> 20 x 20 : 10 bombas\n");
-        printf(" 5 - Muito dificil -> 25 x 25 : 12 bombas\n");
+        printf(" 2 - Facil  -> 7 x 7 : 3 bombas\n");
+        printf(" 3 - Medio -> 9 x 9 : 5 bombas\n");
+        printf(" 4 - Dificil -> 11 x 11 : 7 bombas\n");
+        printf(" 5 - Muito dificil -> 13 x 13 : 9 bombas\n");
         printf(" 0 - Sair\n\n");
 
         printf(" Informe qual dificuldade voce quer entre 1 e 5 ou 0 para sair: ");
@@ -145,24 +143,24 @@ int main()
                 bomba = 1;
                 break;
             case 2:
-                linha = 10;
-                coluna = 10;
-                bomba = 5;
+                linha = 7;
+                coluna = 7;
+                bomba = 3;
                 break;
             case 3:
-                linha = 15;
-                coluna = 15;
-                bomba = 7;
+                linha = 9;
+                coluna = 9;
+                bomba = 5;
                 break;
             case 4:
-                linha = 20;
-                coluna = 20;
-                bomba = 10;
+                linha = 11;
+                coluna = 11;
+                bomba = 7;
                 break;
             case 5:
-                linha = 25;
-                coluna =25;
-                bomba = 12;
+                linha = 13;
+                coluna = 13;
+                bomba = 9;
                 break;
             case 0:
                 continue;
@@ -226,7 +224,7 @@ int main()
         if(venceu)
             printf("\n ### PARABENS voce VENCEU ### \n");
         else
-            printf("\n !!! BOOOM voce encontrou uma BOMBA!!! \n");
+            printf("\n !!! BOOM voce encontrou uma BOMBA!!! \n");
         while ((ch = getchar()) != '\n' && ch != EOF);
 
     }while(op != 0);

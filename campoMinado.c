@@ -3,8 +3,15 @@
 #include <time.h>
 #include <ctype.h>
 
+/*Projeto de programação para IoT: CAMPO MINADO
+Grupo:
+    - ANA BEATRIZ
+    - LAURA
+    - MARLUS
+*/
+
 //Tamanho Máximo do Campo Minado
-#define TAM 25
+#define TAM 13
 
 int linha = 5, coluna = 5, bomba = 1; //inicializa as variaveis com o tamanho minimo
 
@@ -22,7 +29,7 @@ typedef struct {char valor, estado;} casa;
 void armarbombas(casa campominado[TAM][TAM]) {
     int v[linha*coluna], i, j, n, m, x, y, c;
 
-    //Preenche vetor com números de 0 a linha*coluna:
+    //Preenche vetor com número de 0 a linha*coluna:
     for (i=0; i < linha*coluna; i++){
         v[i] = i;
     }
@@ -97,7 +104,7 @@ void imprimircampo(casa campominado[TAM][TAM]){
 }
 
 //Se não tiver bombas na vizinhança da casa automaticamente abre as casas da vizinhança 
-void limpacasasvazias(casa campominado[TAM][TAM], int l, int c){
+void abrecasasvazias(casa campominado[TAM][TAM], int l, int c){
     int i, j;
     for (i = l-1; i<l+2; i++){
         for (j = c-1; j<c+2; j++){
@@ -106,7 +113,7 @@ void limpacasasvazias(casa campominado[TAM][TAM], int l, int c){
                 campominado[i][j].estado = 1; //abre a casa
                 //Se a nova casa também não tiver bombas na vizinhança
                 if(campominado[i][j].valor == 0){
-                    limpacasasvazias(campominado, i, j);
+                    abrecasasvazias(campominado, i, j);
                 }
             }
         }
@@ -136,33 +143,34 @@ int main()
         scanf("%d", &op);
         while ((ch = getchar()) != '\n' && ch != EOF);
 
+        //definiando as opções ou sejas as dificuldades 
         switch(op){
-            case 1:
+            case 1: //muito facil
                 linha = 5;
                 coluna = 5;
                 bomba = 1;
                 break;
-            case 2:
+            case 2: //facil
                 linha = 7;
                 coluna = 7;
                 bomba = 3;
                 break;
-            case 3:
+            case 3: //medio
                 linha = 9;
                 coluna = 9;
                 bomba = 5;
                 break;
-            case 4:
+            case 4: //dificil
                 linha = 11;
                 coluna = 11;
                 bomba = 7;
                 break;
-            case 5:
+            case 5: //muito dificil
                 linha = 13;
                 coluna = 13;
                 bomba = 9;
                 break;
-            case 0:
+            case 0: //sai do jogo e encerra o programa
                 continue;
             default:
                 continue;
@@ -180,7 +188,7 @@ int main()
             while ((ch = getchar()) != '\n' && ch != EOF);
             c = toupper(c)-'A';
             l--;
-            //Se não for uma posição válida
+            //Se não for uma posição válida repete a tela da ultima jogada valida
             if(c<0 || c>=coluna || l<0 || l>=linha)
                 continue;
 
@@ -190,13 +198,13 @@ int main()
             }
             else if(campominado[l][c].valor == 0){
                 campominado[l][c].estado = 1;
-                limpacasasvazias(campominado, l, c);
+                abrecasasvazias(campominado, l, c);
             }
             //Se tem bombas
             else {
-                parar = 1; //Parar
-                venceu = 0; //Perdeu
-                //Mostra todas as bombas:
+                parar = 1; //Para o jogo
+                venceu = 0; //Mostra mensagem de que encontrou uma bomba e voce perdeu
+                //Mostra todas as bombas
                 for (i = 0; i<linha; i++){
                     for (j = 0; j<coluna; j++){
                         if(campominado[i][j].valor < 0)
@@ -215,8 +223,8 @@ int main()
             }
             //Se a quantidade de casas não abertas for igual ao número de bombas
             if(k == bomba && !parar){
-                parar = 1; //Parar
-                venceu = 1; //Vitoria
+                parar = 1; //Para o jogo
+                venceu = 1; //Mosnta mensagem de que voce venceu
             }
         }
 
@@ -224,7 +232,7 @@ int main()
         if(venceu)
             printf("\n ### PARABENS voce VENCEU ### \n");
         else
-            printf("\n !!! BOOM voce encontrou uma BOMBA!!! \n");
+            printf("\n !!! BOOM voce encontrou uma BOMBA e PERDEU!!! \n");
         while ((ch = getchar()) != '\n' && ch != EOF);
 
     }while(op != 0);

@@ -3,7 +3,7 @@
 #include <time.h>
 #include <ctype.h>
 
-/*Projeto de programação para IoT: CAMPO MINADO
+/*Projeto de programação para IoT: CAMPO MINADO v.3.4
 Grupo:
     - ANA BEATRIZ
     - LAURA

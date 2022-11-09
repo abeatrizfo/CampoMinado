@@ -3,7 +3,7 @@
 #include <time.h>
 #include <ctype.h>
 
-/*Projeto de programação para IoT: CAMPO MINADO v.3.4
+/*Projeto de programação para IoT: CAMPO MINADO v3.4
 Grupo:
     - ANA BEATRIZ
     - LAURA
@@ -124,7 +124,7 @@ int main()
 {
     srand(time(NULL));
 
-    int i, j, k, op, l;
+    int i, j, k, opcao, l;
     char c, ch, parar = 0, venceu;
     casa campominado[TAM][TAM] = {0};
 
@@ -140,11 +140,11 @@ int main()
         printf(" 0 - Sair\n\n");
 
         printf(" Informe qual dificuldade voce quer entre 1 e 5 ou 0 para sair: ");
-        scanf("%d", &op);
+        scanf("%d", &opcao);
         while ((ch = getchar()) != '\n' && ch != EOF);
 
         //definiando as opções ou sejas as dificuldades 
-        switch(op){
+        switch(opcao){
             case 1: //muito facil
                 linha = 5;
                 coluna = 5;
@@ -235,7 +235,7 @@ int main()
             printf("\n !!! BOOM voce encontrou uma BOMBA e PERDEU!!! \n");
         while ((ch = getchar()) != '\n' && ch != EOF);
 
-    }while(op != 0);
+    }while(opcao != 0);
 
     return 0;
 }

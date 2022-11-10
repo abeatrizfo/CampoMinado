@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <ctype.h>
+#include <time.h> //biblioteca para usar o rand e sortear as casas em que vai ter bombas 
+#include <ctype.h> //biblioteca para poder usar o toupper
 
-/*Projeto de programação para IoT: CAMPO MINADO v3.4
+/*Projeto de programação para IoT: CAMPO MINADO v3.5
 Grupo:
     - ANA BEATRIZ
     - LAURA
@@ -13,7 +13,7 @@ Grupo:
 //Tamanho Máximo do Campo Minado
 #define TAM 13
 
-int linha = 5, coluna = 5, bomba = 1; //inicializa as variaveis com o tamanho minimo
+int linha = 5, coluna = 5, bomba = 1; //inicializa as variaveis globais com o tamanho minimo
 
 /*Define cada casa do campo
 Valores:
@@ -23,7 +23,7 @@ Estados:
   0      ->  Não aberto
   1      ->  Aberto
 */
-typedef struct {char valor, estado;} casa;
+typedef struct {int valor, estado;} casa;
 
 //Coloca as bombas no campo e coloca valores nas casas sem bombas
 void armarbombas(casa campominado[TAM][TAM]) {
@@ -34,7 +34,7 @@ void armarbombas(casa campominado[TAM][TAM]) {
         v[i] = i;
     }
 
-    //Embaralha números no vetor usando o algoritmo Knuth Fisher-Yates:
+    //Embaralha números no vetor
     for (i = linha*coluna-1; i>0; i--){
         n = rand() % (i+1);
         m = v[i];
